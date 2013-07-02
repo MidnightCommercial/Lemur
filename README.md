@@ -12,3 +12,12 @@ Lemur is a drawing app based on ofxIlda. It's suitable for any vector-drawing ma
 
 ## Goals:
 We want to make a GUI-Based app, controlled by duration or other OSC inputs, that allows stacking and node-based connection of elements for live performance.
+
+##Dependencies
+* [ofxIlda](https://github.com/OmerShapira/ofxIlda): Omer Shapira's fork - for now.
+* [ofxEtherdream](https://github.com/memo/ofxEtherdream)
+* ofxOsc
+* ofxXmlSettings
+* [ofxRange](https://github.com/Flightphase/ofxRange)
+* [ofxDuration](https://github.com/YCAMInterlab/ofxDuration)
+* [ofxUI](https://github.com/rezaali/ofxUI)
