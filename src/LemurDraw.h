@@ -54,8 +54,18 @@ namespace Lemur {
             
         }
         
-        void update();
-        
+        void update(){}
+        void draw(){
+            ildaFrame.update();
+            
+            // draw to the screen
+            ildaFrame.draw(0, 0, ofGetWidth(), ofGetHeight());
+            
+            // send points to the etherdream
+            etherdream.setPoints(ildaFrame);
+            
+            ofSetColor(255);
+        }
         void add(lemurDrawableRef d){
             drawables.push_back(d);
         }

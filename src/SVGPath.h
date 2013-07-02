@@ -26,8 +26,6 @@ namespace Lemur {
         void draw();
         const vector<ofxIlda::Poly>& getPolys();
         
-    private:
-        typedef ofPtr <ofPath> ofPathRef;
     };
 }
 

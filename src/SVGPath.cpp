@@ -32,3 +32,7 @@ void Lemur::SVGPath::loadFile(string _filepath){
     }
     //And now the stack disposes of the file
 }
+
+void Lemur::SVGPath::draw(){
+    
+}
