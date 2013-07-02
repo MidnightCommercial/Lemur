@@ -18,6 +18,7 @@ We want to make a GUI-Based app, controlled by duration or other OSC inputs, tha
 * [ofxEtherdream](https://github.com/memo/ofxEtherdream)
 * ofxOsc
 * ofxXmlSettings
+* ofxSvg
 * [ofxRange](https://github.com/Flightphase/ofxRange)
 * [ofxDuration](https://github.com/YCAMInterlab/ofxDuration)
 * [ofxUI](https://github.com/rezaali/ofxUI)
