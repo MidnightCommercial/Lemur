@@ -11,7 +11,6 @@
 #define UNIT 0.1
 #define ZROT 30
 
-using namespace Lemur;
 
 class LSystem : public Drawable {
     

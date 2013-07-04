@@ -9,7 +9,7 @@
 #include "SVGPath.h"
 #include "ofxIldaPoly.h"
 
-void Lemur::SVGPath::loadFile(string _filepath){
+void SVGPath::loadFile(string _filepath){
     filepath = _filepath;
     //load an SVG
     ofxSVG svg;
@@ -33,6 +33,6 @@ void Lemur::SVGPath::loadFile(string _filepath){
     //TODO: Check if the file is really disposed now - we're not supposed to need it anymore (OmerShapira)
 }
 
-void Lemur::SVGPath::draw(){
+void SVGPath::draw(){
     
 }

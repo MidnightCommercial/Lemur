@@ -11,7 +11,7 @@
 #include "Drawable.h"
 #include "ofxIldaPoly.h"
 
-namespace Lemur {
+using namespace Lemur;
     
     
     class SVGPath : public Drawable{
@@ -25,7 +25,7 @@ namespace Lemur {
         void loadFile(string _filepath);
         void draw();
         const vector<ofxIlda::Poly>& getPolys();
-        
-    };
-}
+private:
+    
+};
 
