@@ -135,6 +135,7 @@
 		167ebf5164bbc4b6c218ef4234b952f5 /* ETF.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ETF.h; path = ../../../addons/ofxCv/libs/CLD/include/CLD/ETF.h; sourceTree = SOURCE_ROOT; };
 		170E5E9817836EBE005F7C82 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		170E5E9A17836EBE005F7C82 /* ofRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofRange.h; sourceTree = "<group>"; };
+		170E5E9B178471C6005F7C82 /* LSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSystem.h; sourceTree = "<group>"; };
 		171425471781DAA000AD77D1 /* LemurTimeFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LemurTimeFunction.h; sourceTree = "<group>"; };
 		171425481781DC2D00AD77D1 /* Drawable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Drawable.h; sourceTree = "<group>"; };
 		1779E4691782118D00E691C9 /* SVGPath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SVGPath.cpp; sourceTree = "<group>"; };
@@ -480,6 +481,16 @@
 				170E5E9A17836EBE005F7C82 /* ofRange.h */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		170E5E9C17848B9E005F7C82 /* Drawables */ = {
+			isa = PBXGroup;
+			children = (
+				17EAA1931781EDAC0035D6F8 /* SVGPath.h */,
+				1779E4691782118D00E691C9 /* SVGPath.cpp */,
+				170E5E9B178471C6005F7C82 /* LSystem.h */,
+			);
+			name = Drawables;
 			sourceTree = "<group>";
 		};
 		170c3384c93b182490ddc9cc03efc04f /* contrib */ = {
@@ -946,8 +957,7 @@
 				171425471781DAA000AD77D1 /* LemurTimeFunction.h */,
 				17EAA1921781ECE10035D6F8 /* Behavior.h */,
 				171425481781DC2D00AD77D1 /* Drawable.h */,
-				17EAA1931781EDAC0035D6F8 /* SVGPath.h */,
-				1779E4691782118D00E691C9 /* SVGPath.cpp */,
+				170E5E9C17848B9E005F7C82 /* Drawables */,
 				E4B69E1F0A3A1BDC003C02F2 /* testApp.h */,
 			);
 			path = src;

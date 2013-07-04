@@ -4,11 +4,15 @@
 void testApp::setup(){
     
     ofBackground(0, 0, 0);
-    eye1 = lemurDrawableRef(new SVGPath("Assets/Test/Eye-Brown.svg"));
-    eye2 = lemurDrawableRef(new SVGPath("Assets/Test/Yesilelma_eye.svg"));
+//    eye1 = lemurDrawableRef(new SVGPath("Assets/Test/Eye-Brown.svg"));
+//    eye2 = lemurDrawableRef(new SVGPath("Assets/Test/Yesilelma_eye.svg"));
+    lsys = lemurDrawableRef(new LSystem());
     
-    lemur.add(eye1);
-    lemur.add(eye2);
+//    lemur.add(eye1);
+//    lemur.add(eye2);
+    
+    lsys->setup();
+    lemur.add(lsys);
 }
 
 //--------------------------------------------------------------

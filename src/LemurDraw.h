@@ -44,9 +44,9 @@ namespace Lemur {
         void drawToIlda(){
             ildaFrame.clear();
             for (int i = 0; i < drawables.size(); i++) {
-                const vector<ofxIlda::Poly>& polysToInsert = drawables[i].get()->getPolys(); //Fuck you, Stroustrup
+                const vector<ofxIlda::Poly>& polysToInsert = drawables[i].get()->getPolys(); //Fuck you, Stroustrup (OmerShapira)
                 for (int j = 0; j < polysToInsert.size(); j++) {
-                    //TODO: Remove color, this is just a test
+                    //TODO: Remove color, this is just a test (OmerShapira)
                     ildaFrame.addPoly(polysToInsert[j], ofFloatColor(1,1,1,1));
                 }
             }
@@ -56,7 +56,8 @@ namespace Lemur {
         
         void update(){}
         void draw(){
-            ildaFrame.update();
+            drawToIlda();
+//            ildaFrame.update();
             
             // draw to the screen
             ildaFrame.draw(0, 0, ofGetWidth(), ofGetHeight());

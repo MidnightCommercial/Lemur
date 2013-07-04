@@ -1,5 +1,5 @@
 //
-//  TimeFunction.h
+//  LemurTimeFunction.h
 //  Lemur
 //
 //  Created by Omer Shapira on 01/07/13.
@@ -11,16 +11,20 @@
 namespace Lemur {
     
     class TimeFunction {
-        TimeFunction* prevLink;
-        bool chained;
+        //Is this the right place to put this? (OmerShapira)
         
+    public:
+        typedef ofPtr<TimeFunction> timeFuncRef;
+    protected:
+        timeFuncRef prevLink;
+        bool chained;
     public:
         TimeFunction(){
             chained = false;
         }
-        TimeFunction(TimeFunction& chain){
+        TimeFunction(timeFuncRef chain){
             chained = true;
-            prevLink = &chain;
+            prevLink = chain;
         }
         
         virtual float computeTime(float t){
@@ -30,7 +34,7 @@ namespace Lemur {
         float get(float t){
             float frac = chained ? prevLink->get(t) : t;
             if ((frac > 1.0) || (frac < 0.0)){
-                //TODO: Check if you're not a complete idiot
+                //TODO: Check if the math is correct (OmerShapira)
                 frac = abs(frac - ((int) frac));
                 
                 return computeTime(frac);
@@ -38,4 +42,5 @@ namespace Lemur {
             
         }
     };
+
 }

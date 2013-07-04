@@ -18,19 +18,19 @@ void Lemur::SVGPath::loadFile(string _filepath){
     //dispose of SVG
     
     for (int i = 0 ; i < svg.getNumPath(); i++){
-        //TODO: use a different method of copying these once you get comfortable with this code
-        //TODO: Now comes the point where you actually need to convert ofPath to ofPoly
+        //TODO: use a different method of copying these once you get comfortable with this code (OmerShapira)
+        //TODO: Now comes the point where you actually need to convert ofPath to ofPoly (OmerShapira)
         ofPath path = svg.getPathAt(i); 
-        //TODO: Make sure this isn't destructive. generatePolylinesFromPaths is not the only thing that happens there
+        //TODO: Make sure this isn't destructive. generatePolylinesFromPaths is not the only thing that happens there (OmerShapira)
         vector<ofPolyline>& polylines = path.getOutline();
         for (int j = 0; j < polylines.size(); j++) {
             
-            //TODO: Check if this isn't returning a pointer
+            //TODO: Check if this isn't returning a pointer (OmerShapira)
             
             polys.push_back(ofxIlda::Poly(polylines[j]));
         }
     }
-    //And now the stack disposes of the file
+    //TODO: Check if the file is really disposed now - we're not supposed to need it anymore (OmerShapira)
 }
 
 void Lemur::SVGPath::draw(){

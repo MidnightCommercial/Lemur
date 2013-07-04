@@ -5,13 +5,13 @@
 #include "ofxEtherdream.h"
 #include "SVGPath.h"
 #include "LemurDraw.h"
+#include "LSystem.h"
 
-using namespace Lemur;
 
 class testApp : public ofBaseApp{
     
     float w, h;
-    lemurDrawableRef eye1, eye2;
+    lemurDrawableRef eye1, eye2, lsys;
     LemurDraw lemur;
     
 	public:
