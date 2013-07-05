@@ -24,8 +24,6 @@ using namespace Lemur;
         }
         void loadFile(string _filepath);
         void draw();
-        const vector<ofxIlda::Poly>& getPolys();
-private:
     
 };
 

@@ -7,7 +7,7 @@
 //
 
 #include "SVGPath.h"
-#include "ofxIldaPoly.h"
+
 
 void SVGPath::loadFile(string _filepath){
     filepath = _filepath;
@@ -28,6 +28,7 @@ void SVGPath::loadFile(string _filepath){
             //TODO: Check if this isn't returning a pointer (OmerShapira)
             
             polys.push_back(ofxIlda::Poly(polylines[j]));
+            polys.back().normalise();
         }
     }
     //TODO: Check if the file is really disposed now - we're not supposed to need it anymore (OmerShapira)
