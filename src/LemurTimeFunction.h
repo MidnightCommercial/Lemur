@@ -9,19 +9,17 @@
 #pragma once
 
 namespace Lemur {
-    //redefinition for typedef to work
-    //TODO: find a better solution
-    class TimeFunction;
     
-    typedef ofPtr<TimeFunction> timeFuncRef;
+    
     class TimeFunction {
     protected:
+        typedef ofPtr<TimeFunction> timeFuncRef;
         timeFuncRef prevLink;
         bool chained;
         string name;
     public:
-        TimeFunction(): chained(false) {}
-        TimeFunction(timeFuncRef chain): chained(true), prevLink(chain){}
+        TimeFunction(string name=""): chained(false), name(name) {}
+        TimeFunction(timeFuncRef chain,string name="") : chained(true), prevLink(chain), name(name){}
         
         virtual float computeTime(float t){ return t; }
         
@@ -42,5 +40,10 @@ namespace Lemur {
                 return prevLink->getChain() + " --> " + name;
             }
         }
-    };
+};
+    //redefinition for typedef to work
+    //TODO: find a better solution
+    //    class TimeFunction;
+    
+typedef ofPtr<TimeFunction> timeFuncRef;
 }

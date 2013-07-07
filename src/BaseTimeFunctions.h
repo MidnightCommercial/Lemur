@@ -13,26 +13,26 @@
 class TimeStep : public TimeFunction {
     float steps;
 public:
-    TimeStep(float steps=2.0, string name="Time Step"): steps(steps) {
-        TimeFunction(name);
+    TimeStep(float steps=2.0, string _name="Time Step"): steps(steps) {
+        name=_name;
     }
-    TimeStep(float steps, timefuncRef chain,string name="Time Step"): steps(steps){
-        TimeFunction(chain,name);
+    TimeStep(float steps, timeFuncRef chain, string _name="Time Step"): steps(steps){
+        TimeFunction(chain,_name);
     }
     
     float computeTime(float t){
-        return (steps > 0) ? t - (t % (1 / steps)) : t;
+        return (steps > 0) ? t - fmod(t, 1/steps) : t;
     }
 };
 
 class Speed : public TimeFunction {
     float coeff;
 public:
-    TimeStep(float coeff=2.0, string name="Speed"): coeff(coeff) {
-        TimeFunction(name);
+    Speed(float coeff=2.0, string _name="Speed"): coeff(coeff) {
+        name=_name;
     }
-    TimeStep(float coeff, timefuncRef chain,string name="Speed"): coeff(coeff){
-        TimeFunction(chain,name);
+    Speed(float coeff, timeFuncRef chain,string _name="Speed"): coeff(coeff){
+        TimeFunction(chain,_name);
     }
 
     float computeTime(float t){
@@ -43,14 +43,16 @@ public:
 class Offset : public TimeFunction {
     float offset;
 public:
-    TimeStep(float offset=2.0, string name="Offset"): offset(offset) {
-        TimeFunction(name);
+    Offset(float offset=2.0, string _name="Offset"): offset(offset) {
+        name = _name;
     }
-    TimeStep(float offset, timefuncRef chain,string name="Offset"): offset(offset){
-        TimeFunction(chain,name);
+    Offset(float offset, timeFuncRef chain,string _name="Offset"): offset(offset){
+        TimeFunction(chain,_name);
     }
 
     float computeTime(float t){
-        return (t+offset)%(1.0);
+        float f; // That's the way C++ wants it
+        //FIXME: Math won't accept 1.0
+        return modf(t+offset, &f);
     }
 };
