@@ -9,7 +9,11 @@
 #pragma once
 
 namespace Lemur {
+    //redefinition for typedef to work
+    //TODO: find a better solution
+    class TimeFunction;
     
+    typedef ofPtr<TimeFunction> timeFuncRef;
     class TimeFunction {
         //Is this the right place to put this? (OmerShapira)
         
@@ -42,5 +46,4 @@ namespace Lemur {
             
         }
     };
-
 }
