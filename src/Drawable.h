@@ -28,8 +28,8 @@ namespace Lemur {
         virtual void update(){}
         virtual void draw(){}
         
-        Drawable(){ timeFunc = timeFuncRef(new TimeFunction()); }
-        Drawable(timeFuncRef timeFunc): timeFunc(timeFunc){}
+        Drawable(string name=""): name(name) { timeFunc = timeFuncRef(new TimeFunction()); }
+        Drawable(timeFuncRef timeFunc, string name=""): name(name), timeFunc(timeFunc){}
         
         void setTime(float t){time = timeFunc->get(t);}
         
