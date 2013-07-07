@@ -19,6 +19,8 @@ namespace Lemur {
         vector<lemurDrawableRef> drawables;
         ofxIlda::Frame ildaFrame;
         ofxEtherdream etherdream;
+    protected:
+        float masterTime;
         
     public:
         LemurDraw(int endCount=10, int blankCount=10, int pps=25000, int targetPointCount=400){
@@ -46,15 +48,22 @@ namespace Lemur {
             for (int i = 0; i < drawables.size(); i++) {
                 const vector<ofxIlda::Poly>& polysToInsert = drawables[i]->getPolys(); //Fuck you, Stroustrup (OmerShapira)
                 for (int j = 0; j < polysToInsert.size(); j++) {
-                    //TODO: Remove color, this is just a test (OmerShapira)
-                    ildaFrame.addPoly(polysToInsert[j], ofFloatColor(1,1,1,1));
+                    ildaFrame.addPoly(polysToInsert[j]);
                 }
             }
             ildaFrame.update();
             
         }
         
-        void update(){}
+        
+        void update(){
+            masterTime = ofGetElapsedTimef();
+            for (int i = 0 ; i < drawables.size() ; i++){
+                drawables[i]->setTime(masterTime);
+                drawables[i]->update();
+            }
+        }
+        
         void draw(){
             drawToIlda();
 //            ildaFrame.update();
