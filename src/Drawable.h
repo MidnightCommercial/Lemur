@@ -15,41 +15,31 @@ namespace Lemur {
     
     class Drawable {
     protected:
+        string name;
         float time;
         vector<ofxIlda::Poly> polys;
-        //TODO: Simplify this address (OmerShapira)
-        Lemur::TimeFunction::timeFuncRef timeFunc;
-    public:
-        
+        timeFuncRef timeFunc;
         ofPoint center;
         float size;
         
-        Drawable(){
-            timeFunc = Lemur::TimeFunction::timeFuncRef(new Lemur::TimeFunction());
-        }
-        
-        void setTime(float t){
-            //ask the time function what time it really is
-            time = timeFunc->get(t);
-        }
-        
-        virtual void update(){}
-        
-        virtual void draw(){
-            
-        }
-        
-        const vector<ofxIlda::Poly>& getPolys(){
-            update();
-            //TODO: I'm not sure this really returns what it's supposed to (OmerShapira)
-            return polys;
-        }
-        
-        void setTimeFunction(Lemur::TimeFunction::timeFuncRef t){
-            timeFunc = t;
-        }
+    public:
         
         void setup(){}
+        virtual void update(){}
+        virtual void draw(){}
+        
+        Drawable(){ timeFunc = timeFuncRef(new TimeFunction()); }
+        Drawable(timeFuncRef timeFunc): timeFunc(timeFunc){}
+        
+        void setTime(float t){time = timeFunc->get(t);}
+        
+        void setName(string &s) { name = s; }
+        const string& getName(){ return name; }
+        
+        const vector<ofxIlda::Poly>& getPolys(){return polys;}
+        
+        void setTimeFunction(timeFuncRef t){timeFunc = t;}
+        
         void scale(float scaleBy){
             findCenter();
             for (int i = 0; i<polys.size(); i++) {
@@ -61,7 +51,7 @@ namespace Lemur {
         void fitToCanvas(){
             //TODO: Move to center
             findCenter();
-            scale(50/size);
+            scale(1/size);
             translate(ofPoint(0.5,0.5,0));
         }
         
