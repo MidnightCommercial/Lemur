@@ -15,25 +15,15 @@ namespace Lemur {
     
     typedef ofPtr<TimeFunction> timeFuncRef;
     class TimeFunction {
-        //Is this the right place to put this? (OmerShapira)
-        
-    public:
-        typedef ofPtr<TimeFunction> timeFuncRef;
     protected:
         timeFuncRef prevLink;
         bool chained;
+        string name;
     public:
-        TimeFunction(){
-            chained = false;
-        }
-        TimeFunction(timeFuncRef chain){
-            chained = true;
-            prevLink = chain;
-        }
+        TimeFunction(): chained(false) {}
+        TimeFunction(timeFuncRef chain): chained(true), prevLink(chain){}
         
-        virtual float computeTime(float t){
-            return t;
-        }
+        virtual float computeTime(float t){ return t; }
         
         float get(float t){
             float frac = chained ? prevLink->get(t) : t;
@@ -43,7 +33,14 @@ namespace Lemur {
                 
                 return computeTime(frac);
             }
-            
+        }
+        string getChain(){
+            if (!chained){
+                return name;
+            } else {
+                //recursive
+                return prevLink->getChain() + " --> " + name;
+            }
         }
     };
 }
