@@ -7,11 +7,11 @@
 //
 
 #pragma once
-namespace Lemur {
-    
 #include "ofxIldaPoly.h"
 #include "LemurTimeFunction.h"
-    
+using namespace ofxIlda;
+
+namespace Lemur {
     
     class Drawable {
     protected:
@@ -21,7 +21,8 @@ namespace Lemur {
         Lemur::TimeFunction::timeFuncRef timeFunc;
     public:
         
-        ofVec2f scale, position, center;
+        ofPoint center;
+        float size;
         
         Drawable(){
             timeFunc = Lemur::TimeFunction::timeFuncRef(new Lemur::TimeFunction());
@@ -32,11 +33,14 @@ namespace Lemur {
             time = timeFunc->get(t);
         }
         
-        virtual void draw(){
+        virtual void update(){}
         
+        virtual void draw(){
+            
         }
         
         const vector<ofxIlda::Poly>& getPolys(){
+            update();
             //TODO: I'm not sure this really returns what it's supposed to (OmerShapira)
             return polys;
         }
@@ -44,9 +48,47 @@ namespace Lemur {
         void setTimeFunction(Lemur::TimeFunction::timeFuncRef t){
             timeFunc = t;
         }
-    
-    void setup(){}
-    
+        
+        void setup(){}
+        void scale(float scaleBy){
+            findCenter();
+            for (int i = 0; i<polys.size(); i++) {
+                polys[i].scaleAboutPoint(scaleBy, center);
+            }
+            findCenter();
+        }
+        
+        void fitToCanvas(){
+            //TODO: Move to center
+            findCenter();
+            scale(50/size);
+            translate(ofPoint(0.5,0.5,0));
+        }
+        
+        void translate(ofPoint p){
+            for (int i = 0 ; i<polys.size() ; i++)
+            {
+                polys[i].translate(p);
+            }
+            //TODO: make "Changed"
+            findCenter();
+        }
+        
+        ofRectangle getBoundingBox(){
+            ofRectangle rect = ofRectangle(0,0,0,0);
+            for (int i = 0 ; i< polys.size(); i++){
+                ofRectangle b = polys[i].getBoundingBox();
+                rect.growToInclude(b);
+            }
+            return rect;
+        }
+        void findCenter(){
+            ofRectangle b = getBoundingBox();
+            //TODO: Check if this is correct
+            center = b.getPosition();
+            size = MAX(b.getWidth(), b.getHeight());
+        }
+        
     };
 }
 
