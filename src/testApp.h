@@ -6,6 +6,7 @@
 #include "SVGPath.h"
 #include "LemurDraw.h"
 #include "LSystem.h"
+#include "Square.h"
 
 
 class testApp : public ofBaseApp{
