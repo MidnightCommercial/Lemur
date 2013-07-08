@@ -12,12 +12,10 @@ namespace Lemur {
     
     
     class TimeFunction {
-    protected:
-        typedef ofPtr<TimeFunction> timeFuncRef;
-        timeFuncRef prevLink;
-        bool chained;
-        string name;
+        
+        
     public:
+        typedef ofPtr<TimeFunction> timeFuncRef;
         TimeFunction(string name=""): chained(false), name(name) {}
         TimeFunction(timeFuncRef chain,string name="") : chained(true), prevLink(chain), name(name){}
         
@@ -40,10 +38,14 @@ namespace Lemur {
                 return prevLink->getChain() + " --> " + name;
             }
         }
-};
+    protected:
+        timeFuncRef prevLink;
+        bool chained;
+        string name;
+    };
     //redefinition for typedef to work
     //TODO: find a better solution
     //    class TimeFunction;
     
-typedef ofPtr<TimeFunction> timeFuncRef;
+    typedef ofPtr<TimeFunction> timeFuncRef;
 }
