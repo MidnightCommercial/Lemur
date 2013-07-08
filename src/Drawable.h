@@ -36,7 +36,7 @@ namespace Lemur {
         void setName(string &s) { name = s; }
         const string& getName(){ return name; }
         
-        const vector<ofxIlda::Poly>& getPolys(){return polys;}
+        const vector<ofxIlda::Poly> getPolys(){return polys;}
         
         void setTimeFunction(timeFuncRef t){timeFunc = t;}
         
@@ -49,7 +49,6 @@ namespace Lemur {
         }
         
         void fitToCanvas(){
-            //TODO: Move to center
             findCenter();
             scale(1/size);
             translate(ofPoint(0.5,0.5,0));

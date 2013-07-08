@@ -5,17 +5,20 @@ void testApp::setup(){
     
     ofBackground(0, 0, 0);
 //    eye1 = lemurDrawableRef(new SVGPath("Assets/Test/Eye-Brown.svg"));
-    //    eye2 = lemurDrawableRef(new SVGPath("Assets/Test/Yesilelma_eye.svg"));
+        eye2 = lemurDrawableRef(new SVGPath(ofToDataPath("fat.svg")));
+    //eye1 = lemurDrawableRef(new GMLPath(ofToDataPath("159.gml")));
     //    lsys = lemurDrawableRef(new LSystem());
-    lemurDrawableRef sq = lemurDrawableRef(new Square(ofRectangle(ofPoint(0.2,0.2,0),ofPoint(0.8,0.8,0)), 8.0 ));
-    sq->setTimeFunction(Lemur::TimeFunction::timeFuncRef(new TimeFunction()));
+    //lemurDrawableRef sq = lemurDrawableRef(new Square(ofRectangle(ofPoint(0.2,0.2,0),ofPoint(0.8,0.8,0)), 8.0 ));
+    //sq->setTimeFunction(Lemur::TimeFunction::timeFuncRef(new TimeFunction()));
 //    eye1->fitToCanvas();
 //    lemur.add(eye1);
-    lemur.add(sq);
+    //lemur.add(sq);
     
     //    cout<< "Center: "<<eye2->center<<endl;
     //    cout<< "Size: "<<eye2->size<<endl;
-    //    lemur.add(eye2);
+    //eye2->fitToCanvas();
+    //eye2->fitToCanvas();
+    lemur.add(eye2);
     
     
     //    lsys->setup();

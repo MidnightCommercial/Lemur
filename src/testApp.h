@@ -7,7 +7,7 @@
 #include "LemurDraw.h"
 #include "LSystem.h"
 #include "Square.h"
-
+#include "GMLPath.h"
 
 class testApp : public ofBaseApp{
     
