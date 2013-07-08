@@ -13,17 +13,17 @@
 
 namespace Lemur {
 
-    typedef ofPtr <Drawable> lemurDrawableRef;
+    typedef ofPtr <Drawable> drawableRef;
     
     class LemurDraw{
-        vector<lemurDrawableRef> drawables;
+        vector<drawableRef> drawables;
         ofxIlda::Frame ildaFrame;
         ofxEtherdream etherdream;
     protected:
         float masterTime;
         
     public:
-        LemurDraw(int endCount=10, int blankCount=10, int pps=25000, int targetPointCount=400){
+        LemurDraw(int endCount=10, int blankCount=20, int targetPointCount=200, int pps=25000){
             etherdream.setup();
             etherdream.setPPS(pps);
             
@@ -31,9 +31,7 @@ namespace Lemur {
             ildaFrame.params.output.doCapY=true;
             ildaFrame.params.output.blankCount=blankCount;
             ildaFrame.params.output.endCount=endCount;
-            
             ildaFrame.polyProcessor.params.targetPointCount=targetPointCount;
-            
         }
         
         void drawToScreen(){
@@ -46,7 +44,7 @@ namespace Lemur {
         void drawToIlda(){
             ildaFrame.clear();
             for (int i = 0; i < drawables.size(); i++) {
-                const vector<ofxIlda::Poly>& polysToInsert = drawables[i]->getPolys(); //Fuck you, Stroustrup (OmerShapira)
+                const vector<ofxIlda::Poly>& polysToInsert = drawables[i]->getPolys(); 
                 for (int j = 0; j < polysToInsert.size(); j++) {
                     ildaFrame.addPoly(polysToInsert[j]);
                 }
@@ -54,7 +52,6 @@ namespace Lemur {
             ildaFrame.update();
             
         }
-        
         
         void update(){
             masterTime = ofGetElapsedTimef();
@@ -66,17 +63,14 @@ namespace Lemur {
         
         void draw(){
             drawToIlda();
-//            ildaFrame.update();
-            
             // draw to the screen
             ildaFrame.draw(0, 0, ofGetWidth(), ofGetHeight());
-            
             // send points to the etherdream
             etherdream.setPoints(ildaFrame);
-            
             ofSetColor(255);
         }
-        void add(lemurDrawableRef d){
+        
+        void add(drawableRef d){
             drawables.push_back(d);
         }
         
