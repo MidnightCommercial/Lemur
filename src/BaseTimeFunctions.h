@@ -36,7 +36,7 @@ public:
     }
 
     float computeTime(float t){
-        return t*coeff;
+        return fmod(t*coeff,1);
     }
 };
 
