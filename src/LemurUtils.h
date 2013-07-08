@@ -9,13 +9,13 @@
 
 namespace Lemur {
     
+    //TODO: ofParameter does this much better.
     template<typename T>
     class Property{
         T _value;
         string _name;
     public:
         Property(string name="Unnamed Property"): _name(name){}
-//        ~Property(){}
         
         T operator()(){ return _value; }
         T & operator=(const T &rhs){
@@ -23,7 +23,6 @@ namespace Lemur {
         }
         
                 string getString(){
-                    //TODO: + is probably unsafe
                     ostringstream output;
                     output<<ofToString(_name)<<" : "<<ofToString(_value);
                     return output.str();

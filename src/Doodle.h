@@ -18,6 +18,8 @@ class Doodle : public Drawable {
     ofPoint start, end;
 public:
     
+    LFloat rfreq, tfreq;
+    
     Doodle(string name="Random Doodle"){
         Drawable::name=name;
         setup();
@@ -32,6 +34,8 @@ public:
         Poly p;
         polys.push_back(p);
         buildLine();
+        rfreq = LFloat("Radius Frequency");
+        tfreq = LFloat("Angle Frequency");
     }
     
     void setBounds(ofPolyline& l){
@@ -46,7 +50,7 @@ public:
     
     ofPoint getAt(const ofPoint& at, int seed=0){
     	//TODO: Worry about seed a little later
-    	complex<float> c = polar(_slang_library_noise1(at.x-1), _slang_library_noise1(at.y+100));
+    	complex<float> c = polar(_slang_library_noise1(at.x*rfreq())*0.5f, _slang_library_noise1(at.x*tfreq() + 1500)*((float)PI));
     	return (at + ofPoint(c.real(), c.imag(), 0));
     }
     

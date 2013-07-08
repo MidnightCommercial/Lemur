@@ -23,7 +23,7 @@ namespace Lemur {
         float masterTime;
         
     public:
-        LemurDraw(int endCount=10, int blankCount=20, int pps=25000, int targetPointCount=1500){
+        LemurDraw(int endCount=0, int blankCount=20, int pps=25000, int targetPointCount=400){
             etherdream.setup();
             etherdream.setPPS(pps);
             
@@ -47,7 +47,7 @@ namespace Lemur {
         void drawToIlda(){
             ildaFrame.clear();
             for (int i = 0; i < drawables.size(); i++) {
-                vector<ofxIlda::Poly> polysToInsert = drawables[i]->getPolys(); //Fuck you, Stroustrup (OmerShapira)
+                vector<ofxIlda::Poly> polysToInsert = drawables[i]->getPolys();
                 for (int j = 0; j < polysToInsert.size(); j++) {
                     ildaFrame.addPoly(polysToInsert[j]);
                 }
