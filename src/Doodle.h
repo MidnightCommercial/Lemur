@@ -22,20 +22,23 @@ public:
     
     Doodle(string name="Random Doodle"){
         Drawable::name=name;
-        setup();
+        setup(0.0, 0.0);
     }
     
-    Doodle(ofPoint lineBegin, ofPoint lineEnd, string name="Directed Doodle"):start(lineBegin), end(lineEnd){
+    Doodle(ofPoint lineBegin, ofPoint lineEnd, float r=0.0, float theta=0.0, string name="Directed Doodle"):start(lineBegin), end(lineEnd){
         Drawable::name=name;
-        setup();
+        setup(r, theta);
     }
     
-    void setup(){
+    
+    void setup(float r, float theta){
         Poly p;
         polys.push_back(p);
-        buildLine();
         rfreq = LFloat("Radius Frequency");
         tfreq = LFloat("Angle Frequency");
+        rfreq=r;
+        tfreq=theta;
+        buildLine();
     }
     
     void setBounds(ofPolyline& l){
@@ -55,7 +58,6 @@ public:
     }
     
     void update(){
-        //dirty, dirty, c++
         vector<ofPoint>& verts = polys.back().getVertices();
         verts.clear();
         //find the "percentage"

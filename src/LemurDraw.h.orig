@@ -1,0 +1,99 @@
+//
+//  LemurDraw.h
+//  Lemur
+//
+//  Created by Omer Shapira on 01/07/13.
+//
+//
+
+#pragma once
+
+#import "ofxIldaFrame.h"
+#import "ofxEtherdream.h"
+
+namespace Lemur {
+
+    typedef ofPtr <Drawable> drawableRef;
+    
+    class LemurDraw{
+        vector<drawableRef> drawables;
+        ofxIlda::Frame ildaFrame;
+        ofxEtherdream etherdream;
+    protected:
+        float masterTime;
+        
+    public:
+<<<<<<< HEAD
+        LemurDraw(int endCount=10, int blankCount=20, int targetPointCount=200, int pps=25000){
+=======
+        LemurDraw(int endCount=10, int blankCount=20, int pps=25000, int targetPointCount=1500){
+>>>>>>> e9506310bdcbed66fc82d0ed0aea0e75913dc3e4
+            etherdream.setup();
+            etherdream.setPPS(pps);
+            
+            ildaFrame.params.output.doCapX=true;
+            ildaFrame.params.output.doCapY=true;
+            ildaFrame.params.output.blankCount=blankCount;
+            ildaFrame.params.output.endCount=endCount;
+<<<<<<< HEAD
+=======
+            ildaFrame.polyProcessor.params.smoothAmount = 0;
+            ildaFrame.polyProcessor.params.spacing = 0.00001;
+>>>>>>> e9506310bdcbed66fc82d0ed0aea0e75913dc3e4
+            ildaFrame.polyProcessor.params.targetPointCount=targetPointCount;
+        }
+        
+        void drawToScreen(){
+            for (int i = 0; i < drawables.size(); ++i)
+            {
+                drawables[i]->draw();
+            }
+        }
+        
+        void drawToIlda(){
+            ildaFrame.clear();
+            for (int i = 0; i < drawables.size(); i++) {
+<<<<<<< HEAD
+                const vector<ofxIlda::Poly>& polysToInsert = drawables[i]->getPolys(); 
+=======
+                vector<ofxIlda::Poly> polysToInsert = drawables[i]->getPolys(); //Fuck you, Stroustrup (OmerShapira)
+>>>>>>> e9506310bdcbed66fc82d0ed0aea0e75913dc3e4
+                for (int j = 0; j < polysToInsert.size(); j++) {
+                    ildaFrame.addPoly(polysToInsert[j]);
+                }
+            }
+            ildaFrame.update();
+            
+        }
+        
+        void update(){
+            masterTime = ofGetElapsedTimef();
+            for (int i = 0 ; i < drawables.size() ; i++){
+                drawables[i]->setTime(masterTime);
+                drawables[i]->update();
+            }
+        }
+        
+        void draw(){
+            drawToIlda();
+<<<<<<< HEAD
+=======
+//            ildaFrame.update();
+            for(int i = 0; i < drawables.size();i++){
+                drawables[i]->draw();
+            }
+>>>>>>> e9506310bdcbed66fc82d0ed0aea0e75913dc3e4
+            // draw to the screen
+            ildaFrame.draw(0, 0, ofGetWidth(), ofGetHeight());
+            // send points to the etherdream
+            etherdream.setPoints(ildaFrame);
+            ofSetColor(255);
+        }
+        
+        void add(drawableRef d){
+            drawables.push_back(d);
+        }
+        
+        
+    };
+}

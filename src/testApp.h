@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "LemurUtils.h"
 #include "ofxIldaFrame.h"
 #include "ofxEtherdream.h"
 #include "SVGPath.h"
@@ -8,11 +9,17 @@
 #include "LSystem.h"
 #include "Square.h"
 #include "GMLPath.h"
+#include "Doodle.h"
+#include "Bird.h"
+#include "BaseTimeFunctions.h"
+
+
+using namespace Lemur;
 
 class testApp : public ofBaseApp{
     
     float w, h;
-    lemurDrawableRef eye1, eye2, lsys;
+    drawableRef eye1, eye2, lsys;
     LemurDraw lemur;
     
 	public:
